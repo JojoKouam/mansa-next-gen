@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
+import { PrivacyProvider } from "@/context/PrivacyContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${inter.className} bg-mansa-black text-mansa-offWhite antialiased`}>
+        <PrivacyProvider>
         <div className="flex min-h-screen">
           {/* 1. La Sidebar reste à gauche */}
           <Sidebar />
@@ -27,6 +29,7 @@ export default function RootLayout({
             </main>
           </div>
         </div>
+        </PrivacyProvider>
       </body>
     </html>
   );

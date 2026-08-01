@@ -1,10 +1,12 @@
 "use client";
 
 import { Bell, Search, Eye, EyeOff } from 'lucide-react';
-import { useState } from 'react';
+// import { useState } from 'react';
+import { usePrivacy } from "@/context/PrivacyContext"; // On importe le "Hook"
 
 export const Header = () => {
-  const [isPrivate, setIsPrivate] = useState(false);
+//   const [isPrivate, setIsPrivate] = useState(false);
+    const { isPrivate, togglePrivacy } = usePrivacy();
 
   return (
     <header className="sticky top-0 z-30 w-full border-b border-white/5 bg-mansa-black/60 backdrop-blur-xl p-6">
@@ -31,7 +33,7 @@ export const Header = () => {
 
           {/* Privacy Toggle */}
           <button 
-            onClick={() => setIsPrivate(!isPrivate)}
+            onClick={togglePrivacy}
             className="p-2 hover:bg-mansa-anthracite rounded-full transition-colors text-mansa-gold"
             title={isPrivate ? "Afficher les montants" : "Masquer les montants"}
           >
