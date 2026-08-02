@@ -1,19 +1,50 @@
-"use client";
-import { usePrivacy } from "@/context/PrivacyContext";
+import { BalanceCard } from "@/components/dashboard/BalanceCard";
+
 export default function Home() {
-    const { isPrivate } = usePrivacy();
+  // Voici nos données (le tableau d'objets)
+  // En situation réelle, ça viendrait d'une base de données
+  const accounts = [
+    {
+      title: "Compte Mansa Platine",
+      amount: "12.500.000",
+      type: "mansa" as const,
+      trend: "+12%"
+    },
+    {
+      title: "Orange Money",
+      amount: "450.000",
+      type: "orange" as const,
+      trend: "+5%"
+    },
+    {
+      title: "Portefeuille Wave",
+      amount: "820.000",
+      type: "wave" as const,
+      trend: "+8%"
+    }
+  ];
+
   return (
-    <div>
-      <h1 className="text-3xl font-bold">Bienvenue sur Mansa</h1>
-      <p className="text-red-400 mt-2">Le dashboard commence ici.</p>
-      <div className="mt-10 p-6 bg-mansa-anthracite rounded-2xl w-80">
-        <p className="text-gray-400 text-sm">Solde Orange Money</p>
-        <p className="text-2xl font-bold mt-2">
-          {/* Si c'est privé, on met des étoiles, sinon le montant */}
-          {isPrivate ? "•••••• FCFA" : "1.250.000 FCFA"}
-        </p>
-      </div>
+    <div className="space-y-10">
+      <section>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Le Mapping : on boucle sur le tableau accounts */}
+          {accounts.map((account) => (
+            <BalanceCard 
+              key={account.title} 
+              title={account.title}
+              amount={account.amount}
+              type={account.type}
+              trend={account.trend}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Zone pour les futurs graphiques de l'étape 3 suite */}
+      <section className="bg-mansa-anthracite/50 border border-white/5 rounded-[32px] h-80 flex items-center justify-center italic text-gray-600">
+        Graphique des flux (Recharts) - En cours de préparation...
+      </section>
     </div>
-    
   );
 }
