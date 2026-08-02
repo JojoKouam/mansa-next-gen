@@ -1,37 +1,53 @@
-"use client"; // Obligatoire car on est dans un composant interactif
+"use client";
 
-import { LayoutDashboard, SendHorizontal, PiggyBank, UserCircle, Settings } from 'lucide-react';
+import { useState } from 'react'; // Pour gérer l'ouverture sur mobile
+import { LayoutDashboard, SendHorizontal, PiggyBank, UserCircle, Settings, Menu, X } from 'lucide-react';
 import { SidebarItem } from './SidebarItem';
+import { cn } from '@/lib/utils';
 
 export const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(false); // Fermé par défaut sur mobile
+
   return (
-    <aside className="fixed left-0 top-0 h-full w-72 bg-mansa-black border-r border-white/5 p-6 flex flex-col">
-      
-      {/* Logo Mansa */}
-      <div className="flex items-center gap-3 mb-12 px-2">
-        <div className="w-8 h-8 bg-linear-to-br from-[#D4AF37] to-[#AA8839] rounded-lg" />
-        <h1 className="text-xl font-bold tracking-tighter uppercase text-mansa-offWhite">
-          Mansa
-        </h1>
-      </div>
+    <>
+      {/* Bouton Burger : Visible uniquement sur mobile */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="lg:hidden fixed top-6 left-4 z-[60] p-2 bg-mansa-gold rounded-lg text-mansa-black"
+      >
+        {isOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
 
-      {/* Menu de Navigation */}
-      <nav className="flex-1 space-y-2">
-        <SidebarItem icon={LayoutDashboard} label="Dashboard" href="/" active />
-        <SidebarItem icon={SendHorizontal} label="Virements" href="/virements" />
-        <SidebarItem icon={PiggyBank} label="Épargne" href="/epargne" />
-        <SidebarItem icon={UserCircle} label="Profil" href="/profil" />
-        <SidebarItem icon={Settings} label="Paramètres" href="/settings" />
-      </nav>
-
-      {/* Footer Sidebar (Optionnel pour le style) */}
-      <div className="mt-auto p-4 bg-mansa-anthracite rounded-2xl border border-white/5">
-        <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Status</p>
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          <span className="text-xs font-medium">Compte Vérifié</span>
+      {/* Sidebar */}
+      <aside className={cn(
+        "fixed left-0 top-0 h-full bg-mansa-black border-r border-white/5 p-6 flex flex-col z-50 transition-transform duration-300",
+        "w-72 lg:translate-x-0", // Largeur fixe, toujours visible sur PC
+        isOpen ? "translate-x-0" : "-translate-x-full" // Cache/Montre sur mobile
+      )}>
+        
+        {/* Logo */}
+        <div className="flex items-center gap-3 mb-12 px-2 mt-8 lg:mt-0">
+          <div className="w-8 h-8 bg-gradient-to-br from-[#D4AF37] to-[#AA8839] rounded-lg" />
+          <h1 className="text-xl font-bold tracking-tighter uppercase text-mansa-offWhite">Mansa</h1>
         </div>
-      </div>
-    </aside>
+
+        {/* Navigation */}
+        <nav className="flex-1 space-y-2">
+          <SidebarItem icon={LayoutDashboard} label="Dashboard" href="/" active />
+          <SidebarItem icon={SendHorizontal} label="Virements" href="/virements" />
+          <SidebarItem icon={PiggyBank} label="Épargne" href="/epargne" />
+          <SidebarItem icon={UserCircle} label="Profil" href="/profil" />
+          <SidebarItem icon={Settings} label="Paramètres" href="/settings" />
+        </nav>
+      </aside>
+
+      {/* Overlay : Fond sombre quand on ouvre le menu sur mobile */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+    </>
   );
 };
