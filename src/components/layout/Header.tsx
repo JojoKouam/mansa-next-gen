@@ -12,7 +12,7 @@ export const Header = () => {
         
         {/* SECTION GAUCHE : Burger (externe) + Titre */}
         <div className="pl-10 lg:pl-0 min-w-0">
-          <h2 className="text-gray-500 text-[10px] font-medium uppercase tracking-[0.1em] truncate">
+          <h2 className="text-gray-500 text-[10px] font-medium uppercase tracking-widest truncate">
             Tableau de Bord
           </h2>
           <h1 className="text-lg md:text-2xl font-semibold truncate">
@@ -21,7 +21,7 @@ export const Header = () => {
         </div>
 
         {/* SECTION DROITE : Les Actions (Recherche, Privacy, Notif, Profil) */}
-        <div className="flex items-center gap-1 md:gap-4 flex-shrink-0">
+        <div className="flex items-center gap-1 md:gap-4 shrink-0">
           
           {/* RECHERCHE : Icône sur Mobile, Barre sur PC */}
           <div className="flex items-center">
@@ -51,7 +51,7 @@ export const Header = () => {
           </button>
 
           {/* PROFIL : On le réduit un peu sur mobile */}
-          <div className="ml-1 w-8 h-8 md:w-10 md:h-10 rounded-full border border-mansa-gold/30 bg-mansa-anthracite flex items-center justify-center text-[10px] md:text-xs font-bold flex-shrink-0">
+          <div className="ml-1 w-8 h-8 md:w-10 md:h-10 rounded-full border border-mansa-gold/30 bg-mansa-anthracite flex items-center justify-center text-[10px] md:text-xs font-bold shrink-0">
              MK
           </div>
         </div>
