@@ -13,9 +13,9 @@ export const Sidebar = () => {
       {/* Bouton Burger : Visible uniquement sur mobile */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="lg:hidden fixed top-6 left-4 z-[60] p-2 bg-mansa-gold rounded-lg text-mansa-black"
+        className="lg:hidden fixed top-6 left-4.5 z-60 text-mansa-gold p-1 hover:scale-110 transition-transform"
       >
-        {isOpen ? <X size={20} /> : <Menu size={20} />}
+        {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
       {/* Sidebar */}
@@ -27,7 +27,7 @@ export const Sidebar = () => {
         
         {/* Logo */}
         <div className="flex items-center gap-3 mb-12 px-2 mt-8 lg:mt-0">
-          <div className="w-8 h-8 bg-gradient-to-br from-[#D4AF37] to-[#AA8839] rounded-lg" />
+          <div className="w-8 h-8 bg-linear-to-br from-[#D4AF37] to-[#AA8839] rounded-lg" />
           <h1 className="text-xl font-bold tracking-tighter uppercase text-mansa-offWhite">Mansa</h1>
         </div>
 

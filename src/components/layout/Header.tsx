@@ -13,13 +13,13 @@ export const Header = () => {
       <div className="flex items-center justify-between">
         
         {/* Section Gauche : Titre dynamique */}
-        <div>
+        <div className="pl-12 lg:pl-0">
           <h2 className="text-gray-500 text-xs font-medium uppercase tracking-[0.2em]">Tableau de Bord</h2>
           <h1 className="text-2xl font-semibold mt-1">Akwaba, Mansa</h1>
         </div>
 
         {/* Section Droite : Actions */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 md:gap-6">
           
           {/* Barre de recherche minimaliste */}
           <div className="hidden md:flex items-center gap-3 bg-mansa-anthracite border border-white/5 px-4 py-2 rounded-full w-64">

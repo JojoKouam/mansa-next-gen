@@ -42,7 +42,7 @@ export default function Home() {
       </section>
 
       {/* Zone pour les futurs graphiques de l'étape 3 suite */}
-      <section className="bg-mansa-anthracite/50 border border-white/5 rounded-[32px] h-80 flex items-center justify-center italic text-gray-600">
+      <section className="bg-mansa-anthracite/50 border border-white/5 rounded-4xl h-80 flex items-center justify-center italic text-gray-600">
         Graphique des flux (Recharts) - En cours de préparation...
       </section>
     </div>

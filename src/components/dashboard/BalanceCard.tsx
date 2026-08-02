@@ -2,7 +2,7 @@
 
 import { usePrivacy } from "@/context/PrivacyContext";
 import { cn } from "@/lib/utils";
-import { Wallet, ArrowUpRight } from "lucide-react";
+import {  ArrowUpRight } from "lucide-react";
 
 // On définit ce qu'une carte doit recevoir
 interface BalanceCardProps {
@@ -16,11 +16,6 @@ export const BalanceCard = ({ title, amount, type, trend }: BalanceCardProps) =>
   const { isPrivate } = usePrivacy();
 
   // On définit des couleurs selon le type
-  const styles = {
-    mansa: "border-mansa-gold/20 from-mansa-gold/10",
-    orange: "border-orange-500/20 from-orange-500/10",
-    wave: "border-blue-500/20 from-blue-500/10",
-  };
   const renderLogo = () => {
     switch(type) {
       case 'orange': return <span className="font-bold text-orange-500">OM</span>;
@@ -31,7 +26,7 @@ export const BalanceCard = ({ title, amount, type, trend }: BalanceCardProps) =>
 
   return (
     <div className={cn(
-      "relative overflow-hidden rounded-[32px] border p-8 bg-gradient-to-br to-transparent backdrop-blur-md transition-all duration-500",
+      "relative overflow-hidden rounded-4xl border p-8 bg-linear-to-br to-transparent backdrop-blur-md transition-all duration-500",
       type === "mansa" ? "border-mansa-gold/20 from-mansa-gold/10" : 
       type === "orange" ? "border-orange-500/20 from-orange-500/10" : "border-blue-500/20 from-blue-500/10"
     )}>

@@ -20,11 +20,11 @@ export default function RootLayout({
           <Sidebar />
 
           {/* 2. On crée un bloc à droite qui contient le Header ET le Contenu */}
-          <div className="flex-1 lg:ml-72 flex flex-col">
+          <div className="flex-1 w-ull lg:ml-72 flex flex-col">
             <Header />
             
             {/* Le contenu de la page vient juste en dessous du Header */}
-            <main className="p-8">
+            <main className="p-8 md:p-8 lg:p-12">
               {children}
             </main>
           </div>
