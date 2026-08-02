@@ -21,42 +21,36 @@ export const BalanceCard = ({ title, amount, type, trend }: BalanceCardProps) =>
     orange: "border-orange-500/20 from-orange-500/10",
     wave: "border-blue-500/20 from-blue-500/10",
   };
+  const renderLogo = () => {
+    switch(type) {
+      case 'orange': return <span className="font-bold text-orange-500">OM</span>;
+      case 'wave': return <span className="font-bold text-blue-500">W</span>;
+      default: return <div className="w-5 h-5 bg-mansa-gold rounded-full" />;
+    }
+  };
 
   return (
     <div className={cn(
-      "relative overflow-hidden rounded-4xl border p-8 bg-linear-to-br to-transparent backdrop-blur-md transition-all duration-500 hover:scale-[1.02]",
-      styles[type]
+      "relative overflow-hidden rounded-[32px] border p-8 bg-gradient-to-br to-transparent backdrop-blur-md transition-all duration-500",
+      type === "mansa" ? "border-mansa-gold/20 from-mansa-gold/10" : 
+      type === "orange" ? "border-orange-500/20 from-orange-500/10" : "border-blue-500/20 from-blue-500/10"
     )}>
-      {/* Petit effet de reflet en haut à gauche */}
-      <div className="absolute -left-10 -top-10 w-32 h-32 bg-white/5 blur-3xl rounded-full" />
-
       <div className="flex justify-between items-start mb-6">
-        <div className={cn(
-          "p-3 rounded-2xl",
-          type === "mansa" ? "bg-mansa-gold/10 text-mansa-gold" : 
-          type === "orange" ? "bg-orange-500/10 text-orange-500" : "bg-blue-500/10 text-blue-500"
-        )}>
-          <Wallet size={24} />
+        <div className="flex items-center gap-3">
+           <div className="p-2 bg-white/5 rounded-lg border border-white/10">
+              {renderLogo()}
+           </div>
+           <p className="text-gray-500 text-sm font-medium">{title}</p>
         </div>
-        <div className="flex items-center gap-1 text-green-400 text-sm font-medium">
-          {trend} <ArrowUpRight size={16} />
+        <div className="flex items-center gap-1 text-green-400 text-sm font-medium bg-green-400/10 px-2 py-1 rounded-full">
+          {trend} <ArrowUpRight size={14} />
         </div>
       </div>
 
       <div>
-        <p className="text-gray-500 text-sm font-medium mb-1">{title}</p>
         <h3 className="text-3xl font-bold tracking-tight">
           {isPrivate ? "•••••• FCFA" : `${amount} FCFA`}
         </h3>
-      </div>
-
-      {/* Décoration subtile au fond */}
-      <div className="mt-6 h-1 w-full bg-white/5 rounded-full overflow-hidden">
-        <div className={cn(
-          "h-full w-1/3 rounded-full",
-          type === "mansa" ? "bg-mansa-gold" : 
-          type === "orange" ? "bg-orange-500" : "bg-blue-500"
-        )} />
       </div>
     </div>
   );
