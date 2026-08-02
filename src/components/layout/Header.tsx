@@ -1,62 +1,58 @@
 "use client";
 
 import { Bell, Search, Eye, EyeOff } from 'lucide-react';
-// import { useState } from 'react';
-import { usePrivacy } from "@/context/PrivacyContext"; // On importe le "Hook"
+import { usePrivacy } from "@/context/PrivacyContext";
 
 export const Header = () => {
-//   const [isPrivate, setIsPrivate] = useState(false);
-    const { isPrivate, togglePrivacy } = usePrivacy();
+  const { isPrivate, togglePrivacy } = usePrivacy();
 
   return (
-    <header className="sticky top-0 z-30 w-full border-b border-white/5 bg-mansa-black/60 backdrop-blur-xl p-6">
-      <div className="flex items-center justify-between">
+    <header className="sticky top-0 z-30 w-full border-b border-white/5 bg-mansa-black/60 backdrop-blur-xl p-4 md:p-6">
+      <div className="flex items-center justify-between gap-2">
         
-        {/* Section Gauche : Titre dynamique */}
-        <div className="pl-12 lg:pl-0">
-          <h2 className="text-gray-500 text-xs font-medium uppercase tracking-[0.2em]">Tableau de Bord</h2>
-          <h1 className="text-2xl font-semibold mt-1">Akwaba, Mansa</h1>
+        {/* SECTION GAUCHE : Burger (externe) + Titre */}
+        <div className="pl-10 lg:pl-0 min-w-0">
+          <h2 className="text-gray-500 text-[10px] font-medium uppercase tracking-[0.1em] truncate">
+            Tableau de Bord
+          </h2>
+          <h1 className="text-lg md:text-2xl font-semibold truncate">
+            Akwaba, Mansa
+          </h1>
         </div>
 
-        {/* Section Droite : Actions */}
-        <div className="flex items-center gap-3 md:gap-6">
-          <div className="flex items-center"> 
-                {/* Barre de recherche minimaliste */}
-                <div className="hidden md:flex items-center gap-3 bg-mansa-anthracite border border-white/5 px-4 py-2 rounded-full w-64 focus-within:border-mansa-gold transition-colors">
-                    <Search size={18} className="text-gray-500" />
-                    <input 
-                    type="text" 
-                    placeholder="Rechercher..." 
-                    className="bg-transparent border-none outline-none text-sm text-mansa-offWhite placeholder:text-gray-600 w-full"
-                    />
-                </div>
-
-                {/* Version Mobile : Uniquement l'icône loupe, cachée sur PC (md:hidden) */}
-                <button className="md:hidden p-2 hover:bg-mansa-anthracite rounded-full text-gray-400">
-                    <Search size={20} />
-                </button>
-            </div>
+        {/* SECTION DROITE : Les Actions (Recherche, Privacy, Notif, Profil) */}
+        <div className="flex items-center gap-1 md:gap-4 flex-shrink-0">
           
+          {/* RECHERCHE : Icône sur Mobile, Barre sur PC */}
+          <div className="flex items-center">
+            {/* Version PC */}
+            <div className="hidden lg:flex items-center gap-3 bg-mansa-anthracite border border-white/5 px-4 py-2 rounded-full w-64 focus-within:border-mansa-gold transition-all">
+              <Search size={18} className="text-gray-500" />
+              <input type="text" placeholder="Rechercher..." className="bg-transparent border-none outline-none text-sm text-mansa-offWhite w-full" />
+            </div>
+            {/* Version Mobile : Toujours visible si < lg */}
+            <button className="lg:hidden p-2 hover:bg-mansa-anthracite rounded-full text-gray-400">
+              <Search size={20} />
+            </button>
+          </div>
 
-          {/* Privacy Toggle */}
+          {/* PRIVACY : Toujours visible */}
           <button 
             onClick={togglePrivacy}
-            className="p-2 hover:bg-mansa-anthracite rounded-full transition-colors text-mansa-gold"
-            title={isPrivate ? "Afficher les montants" : "Masquer les montants"}
+            className="p-2 hover:bg-mansa-anthracite rounded-full text-mansa-gold transition-transform active:scale-90"
           >
             {isPrivate ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
 
-          {/* Notifications */}
-          <div className="relative hidden sm:block">
-            <Bell size={20} className="text-gray-500 hover:text-mansa-offWhite cursor-pointer" />
-            <span className="absolute -top-1 -right-1 w-2 h-2 bg-mansa-gold rounded-full border-2 border-mansa-black"></span>
-          </div>
+          {/* NOTIFICATIONS : Toujours visible maintenant */}
+          <button className="p-2 hover:bg-mansa-anthracite rounded-full relative text-gray-400">
+            <Bell size={20} />
+            <span className="absolute top-2 right-2 w-2 h-2 bg-mansa-gold rounded-full border border-mansa-black"></span>
+          </button>
 
-          {/* Avatar Utilisateur */}
-          <div className="w-10 h-10 rounded-full border-2 border-mansa-gold/30 overflow-hidden bg-mansa-anthracite">
-             {/* Ici on mettra une image plus tard */}
-             <div className="w-full h-full flex items-center justify-center text-xs font-bold">MK</div>
+          {/* PROFIL : On le réduit un peu sur mobile */}
+          <div className="ml-1 w-8 h-8 md:w-10 md:h-10 rounded-full border border-mansa-gold/30 bg-mansa-anthracite flex items-center justify-center text-[10px] md:text-xs font-bold flex-shrink-0">
+             MK
           </div>
         </div>
       </div>
