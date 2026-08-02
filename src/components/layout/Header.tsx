@@ -20,16 +20,23 @@ export const Header = () => {
 
         {/* Section Droite : Actions */}
         <div className="flex items-center gap-3 md:gap-6">
+          <div className="flex items-center"> 
+                {/* Barre de recherche minimaliste */}
+                <div className="hidden md:flex items-center gap-3 bg-mansa-anthracite border border-white/5 px-4 py-2 rounded-full w-64 focus-within:border-mansa-gold transition-colors">
+                    <Search size={18} className="text-gray-500" />
+                    <input 
+                    type="text" 
+                    placeholder="Rechercher..." 
+                    className="bg-transparent border-none outline-none text-sm text-mansa-offWhite placeholder:text-gray-600 w-full"
+                    />
+                </div>
+
+                {/* Version Mobile : Uniquement l'icône loupe, cachée sur PC (md:hidden) */}
+                <button className="md:hidden p-2 hover:bg-mansa-anthracite rounded-full text-gray-400">
+                    <Search size={20} />
+                </button>
+            </div>
           
-          {/* Barre de recherche minimaliste */}
-          <div className="hidden md:flex items-center gap-3 bg-mansa-anthracite border border-white/5 px-4 py-2 rounded-full w-64">
-            <Search size={18} className="text-gray-500" />
-            <input 
-              type="text" 
-              placeholder="Rechercher..." 
-              className="bg-transparent border-none outline-none text-sm text-mansa-offWhite placeholder:text-gray-600"
-            />
-          </div>
 
           {/* Privacy Toggle */}
           <button 
@@ -41,7 +48,7 @@ export const Header = () => {
           </button>
 
           {/* Notifications */}
-          <div className="relative">
+          <div className="relative hidden sm:block">
             <Bell size={20} className="text-gray-500 hover:text-mansa-offWhite cursor-pointer" />
             <span className="absolute -top-1 -right-1 w-2 h-2 bg-mansa-gold rounded-full border-2 border-mansa-black"></span>
           </div>
