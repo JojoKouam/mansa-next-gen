@@ -1,4 +1,5 @@
 import { BalanceCard } from "@/components/dashboard/BalanceCard";
+import { TransactionList } from "@/components/dashboard/TransactionList";
 
 export default function Home() {
   // Voici nos données (le tableau d'objets)
@@ -39,6 +40,9 @@ export default function Home() {
             />
           ))}
         </div>
+      </section>
+      <section>
+        <TransactionList />
       </section>
 
       {/* Zone pour les futurs graphiques de l'étape 3 suite */}
