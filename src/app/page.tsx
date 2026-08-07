@@ -1,5 +1,4 @@
 import { BalanceCard } from "@/components/dashboard/BalanceCard";
-import { OverviewChart } from "@/components/dashboard/OverviewChart";
 import { TransactionList } from "@/components/dashboard/TransactionList";
 
 export default function Home() {
@@ -44,7 +43,6 @@ export default function Home() {
       </section>
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <OverviewChart />
         </div>
         <div className="lg:col-span-1">
           <TransactionList />
