@@ -1,8 +1,17 @@
+"use client"
 import { BalanceCard } from "@/components/dashboard/BalanceCard";
 import { TontineWidget } from "@/components/dashboard/TontineWidget";
 import { TransactionList } from "@/components/dashboard/TransactionList";
+import { useState, useEffect } from "react";
+import { Toast } from "@/components/ui/Toast";
 
 export default function Home() {
+const [showWelcome, setShowWelcome] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowWelcome(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const accounts = [
     {
@@ -26,7 +35,13 @@ export default function Home() {
   ];
 
   return (
-    <div className="space-y-10">
+    <div className="max-w-7xl mx-auto space-y-8">
+      <Toast 
+        show={showWelcome} 
+        message="Connexion réussie" 
+        description="Ravi de vous revoir, Mansa. Vos comptes sont à jour."
+        onClose={() => setShowWelcome(false)}
+      />
       <section>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Le Mapping : on boucle sur le tableau accounts */}
