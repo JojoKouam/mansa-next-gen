@@ -1,9 +1,9 @@
 import { BalanceCard } from "@/components/dashboard/BalanceCard";
+import { TontineWidget } from "@/components/dashboard/TontineWidget";
 import { TransactionList } from "@/components/dashboard/TransactionList";
 
 export default function Home() {
-  // Voici nos données (le tableau d'objets)
-  // En situation réelle, ça viendrait d'une base de données
+
   const accounts = [
     {
       title: "Compte Mansa Platine",
@@ -43,7 +43,8 @@ export default function Home() {
       </section>
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-        </div>
+          <TontineWidget />
+          </div>
         <div className="lg:col-span-1">
           <TransactionList />
         </div>
