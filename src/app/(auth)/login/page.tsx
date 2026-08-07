@@ -17,7 +17,7 @@ export default function LoginPage() {
       >
         <div className="w-full max-w-md">
         <div className="text-center mb-10">
-          <Logo className="mx-auto mb-6" />
+          <Logo className="mx-auto mb-6" /> {/* Même Logo ! */}
           <h1 className="text-3xl font-bold tracking-tight text-mansa-offWhite">Akwaba sur Mansa</h1>
           <p className="text-gray-500 mt-2 text-[10px] uppercase tracking-[0.3em]">L&apos;excellence financière</p>
         </div>
