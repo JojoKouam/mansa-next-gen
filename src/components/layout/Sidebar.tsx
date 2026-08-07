@@ -5,7 +5,10 @@ import { LayoutDashboard, SendHorizontal, PiggyBank, UserCircle, Settings, Menu,
 import { SidebarItem } from './SidebarItem';
 import { cn } from '@/lib/utils';
 
+import { usePathname } from "next/navigation";
+
 export const Sidebar = () => {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false); // Fermé par défaut sur mobile
 
   return (
@@ -21,8 +24,8 @@ export const Sidebar = () => {
       {/* Sidebar */}
       <aside className={cn(
         "fixed left-0 top-0 h-full bg-mansa-black border-r border-white/5 p-6 flex flex-col z-50 transition-transform duration-300",
-        "w-72 lg:translate-x-0", // Largeur fixe, toujours visible sur PC
-        isOpen ? "translate-x-0" : "-translate-x-full" // Cache/Montre sur mobile
+        "w-72 lg:translate-x-0", 
+        isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         
         {/* Logo */}
@@ -33,11 +36,21 @@ export const Sidebar = () => {
 
         {/* Navigation */}
         <nav className="flex-1 space-y-2">
-          <SidebarItem icon={LayoutDashboard} label="Dashboard" href="/" active />
-          <SidebarItem icon={SendHorizontal} label="Virements" href="/virements" />
-          <SidebarItem icon={PiggyBank} label="Épargne" href="/epargne" />
-          <SidebarItem icon={UserCircle} label="Profil" href="/profil" />
-          <SidebarItem icon={Settings} label="Paramètres" href="/settings" />
+          {[
+    { icon: LayoutDashboard, label: "Dashboard", href: "/" },
+    { icon: SendHorizontal, label: "Virements", href: "/virements" },
+    { icon: PiggyBank, label: "Épargne", href: "/epargne" },
+    { icon: UserCircle, label: "Profil", href: "/profil" },
+    { icon: Settings, label: "Paramètres", href: "/settings" },
+  ].map((item) => (
+    <SidebarItem 
+      key={item.href} 
+      icon={item.icon} 
+      label={item.label} 
+      href={item.href} 
+      active={pathname === item.href} 
+    />
+  ))}
         </nav>
       </aside>
 
