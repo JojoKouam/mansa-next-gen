@@ -6,9 +6,7 @@ import {
   ArrowUpRight, 
   ArrowDownLeft, 
   Smartphone, 
-  CreditCard, 
-  Banknote 
-} from "lucide-react";
+  CreditCard} from "lucide-react";
 
 interface TransactionProps {
   title: string;
