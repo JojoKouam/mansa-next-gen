@@ -1,36 +1,19 @@
-import "./globals.css";
-import { Inter } from "next/font/google";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
 import { PrivacyProvider } from "@/context/PrivacyContext";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
-      <body className={`${inter.className} bg-mansa-black text-mansa-offWhite antialiased`}>
-        <PrivacyProvider>
-        <div className="flex min-h-screen">
-          {/* 1. La Sidebar reste à gauche */}
-          <Sidebar />
-
-          {/* 2. On crée un bloc à droite qui contient le Header ET le Contenu */}
-          <div className="flex-1 w-ull lg:ml-72 flex flex-col">
-            <Header />
-            
-            {/* Le contenu de la page vient juste en dessous du Header */}
-            <main className="p-8 md:p-8 lg:p-12">
-              {children}
-            </main>
-          </div>
+    <PrivacyProvider>
+      <div className="flex min-h-screen">
+        <Sidebar />
+        <div className="flex-1 w-full lg:ml-72 flex flex-col">
+          <Header />
+          <main className="p-4 md:p-8 lg:p-12">
+            {children}
+          </main>
         </div>
-        </PrivacyProvider>
-      </body>
-    </html>
+      </div>
+    </PrivacyProvider>
   );
 }
