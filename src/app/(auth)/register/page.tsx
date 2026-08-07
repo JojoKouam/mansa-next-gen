@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Lock, Mail, User, Briefcase, CheckCircle2, Eye, EyeOff  } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Logo } from "@/components/ui/Logo";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -31,17 +32,17 @@ export default function RegisterPage() {
       <AnimatePresence>
         {isRegistered && (
           <motion.div 
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            className="fixed top-10 left-1/2 -translate-x-1/2 z-50 bg-mansa-anthracite border border-mansa-gold/50 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 100 }}
+            className="fixed top-6 right-6 z-50 bg-[#1a1a1a] border border-mansa-gold/30 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 min-w-75"
           >
-            <div className="w-10 h-10 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center shrink-0">
               <CheckCircle2 size={24} />
             </div>
             <div>
-              <p className="font-bold text-sm">Compte Mansa créé !</p>
-              <p className="text-xs text-gray-400">Redirection vers la connexion...</p>
+              <p className="font-bold text-sm">Bienvenue Mansa !</p>
+              <p className="text-[10px] text-gray-400 uppercase tracking-widest">Compte en cours de création...</p>
             </div>
           </motion.div>
         )}
@@ -53,6 +54,7 @@ export default function RegisterPage() {
         className="w-full max-w-md"
       >
         <div className="text-center mb-8">
+        <Logo className="mx-auto mb-6" />
           <h1 className="text-3xl font-bold tracking-tight">Devenir un Mansa</h1>
           <p className="text-gray-500 mt-2 text-sm uppercase tracking-widest">Rejoignez l&apos;élite entrepreneuriale</p>
         </div>
