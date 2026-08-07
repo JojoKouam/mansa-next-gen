@@ -1,5 +1,4 @@
 import { BalanceCard } from "@/components/dashboard/BalanceCard";
-import { OverviewChart } from "@/components/dashboard/OverviewChart";
 import { TontineWidget } from "@/components/dashboard/TontineWidget";
 import { TransactionList } from "@/components/dashboard/TransactionList";
 
