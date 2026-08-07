@@ -1,12 +1,12 @@
 "use client";
-
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Lock, Mail } from "lucide-react";
+import { ArrowRight, Lock, Mail, Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const router = useRouter();
-
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
       <motion.div 
@@ -35,7 +35,20 @@ export default function LoginPage() {
             <label className="text-[10px] uppercase tracking-[0.2em] text-gray-500 ml-1">Mot de passe</label>
             <div className="relative">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
-              <input type="password" placeholder="••••••••" className="w-full bg-mansa-anthracite border border-white/5 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-mansa-gold/50 transition-all" />
+              
+              <input 
+                type={showPassword ? "text" : "password"} 
+                placeholder="••••••••" 
+                className="w-full bg-mansa-anthracite border border-white/5 rounded-2xl py-4 pl-12 pr-12 outline-none focus:border-mansa-gold/50 transition-all text-sm" 
+              />
+
+              <button 
+                type="button" 
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 hover:text-mansa-gold transition-colors"
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
           </div>
 
