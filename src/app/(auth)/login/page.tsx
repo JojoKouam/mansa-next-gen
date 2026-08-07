@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Lock, Mail, Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Logo } from "@/components/ui/Logo";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -14,12 +15,12 @@ export default function LoginPage() {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md"
       >
+        <div className="w-full max-w-md">
         <div className="text-center mb-10">
-          <div className="w-16 h-16 bg-linear-to-br from-[#D4AF37] to-[#AA8839] rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-2xl shadow-mansa-gold/20">
-             <span className="text-mansa-black text-2xl font-bold italic">M</span>
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight">Akwaba sur Mansa</h1>
-          <p className="text-gray-500 mt-2 text-sm uppercase tracking-widest">L&apos;excellence financière</p>
+          <Logo className="mx-auto mb-6" />
+          <h1 className="text-3xl font-bold tracking-tight text-mansa-offWhite">Akwaba sur Mansa</h1>
+          <p className="text-gray-500 mt-2 text-[10px] uppercase tracking-[0.3em]">L&apos;excellence financière</p>
+        </div>
         </div>
 
         <div className="space-y-6">
