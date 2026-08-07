@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Send, Smartphone, Landmark } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Toast } from "@/components/ui/Toast";
-
+import { LucideIcon } from "lucide-react"; 
 // Types d'opérateurs
 type Operator = "wave" | "orange" | "bank";
 
@@ -29,7 +29,7 @@ export default function VirementsPage() {
     }, 2000);
   };
 
-  
+
   return (
     <div className="max-w-3xl mx-auto space-y-10">
       <Toast 
@@ -47,7 +47,7 @@ export default function VirementsPage() {
       {/* 1. SÉLECTEUR D'OPÉRATEUR */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <OperatorCard 
-          id="wave" 
+          id="wave"
           label="Wave" 
           icon={Smartphone} 
           active={operator === "wave"} 
@@ -132,12 +132,23 @@ export default function VirementsPage() {
 }
 
 // Sous-composant pour les cartes d'opérateurs
-function OperatorCard({ label, icon: Icon, active, onClick, color }: any) {
+interface OperatorCardProps {
+  id: string;        // On ajoute l'id ici !
+  label: string;
+  icon: LucideIcon;  // On remplace 'any' par 'LucideIcon'
+  active: boolean;
+  onClick: () => void;
+  color: string;
+}
+
+
+// 2. On applique l'interface au composant
+function OperatorCard({ label, icon: Icon, active, onClick, color }: OperatorCardProps) {
   return (
     <button 
       onClick={onClick}
       className={cn(
-        "flex flex-col items-center gap-4 p-6 rounded-[28px] border transition-all duration-300",
+        "flex flex-col items-center gap-4 p-6 rounded-[28px] border transition-all duration-300 w-full",
         active 
           ? "bg-mansa-anthracite border-mansa-gold/50 shadow-xl shadow-mansa-gold/5" 
           : "bg-mansa-anthracite/20 border-white/5 hover:border-white/10"
@@ -146,7 +157,7 @@ function OperatorCard({ label, icon: Icon, active, onClick, color }: any) {
       <div className={cn("p-4 rounded-2xl bg-mansa-black/50", active ? color : "text-gray-600")}>
         <Icon size={28} />
       </div>
-      <span className={cn("text-xs font-bold uppercase tracking-widest", active ? "text-mansa-offWhite" : "text-gray-600")}>
+      <span className={cn("text-[10px] font-bold uppercase tracking-widest", active ? "text-mansa-offWhite" : "text-gray-600")}>
         {label}
       </span>
     </button>
