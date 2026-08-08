@@ -1,10 +1,24 @@
 "use client";
 
-import { PiggyBank, Briefcase, Home, Car, Plus,Lightbulb  } from "lucide-react";
-import { SavingsVault } from "@/components/dashboard/SavingsVault";
+import { 
+  PiggyBank, Briefcase, Home, Car, Plus, Lightbulb, 
+  ShoppingCart, Plane, Heart, Rocket, Laptop 
+} from "lucide-react";import { SavingsVault } from "@/components/dashboard/SavingsVault";
 import { useState } from "react";
 import { Modal } from "@/components/ui/Modal";
 import { Toast } from "@/components/ui/Toast";
+import { cn } from "@/lib/utils";
+
+const AVAILABLE_ICONS = [
+  { id: "briefcase", icon: Briefcase },
+  { id: "home", icon: Home },
+  { id: "car", icon: Car },
+  { id: "rocket", icon: Rocket },
+  { id: "plane", icon: Plane },
+  { id: "laptop", icon: Laptop },
+  { id: "cart", icon: ShoppingCart },
+  { id: "piggy", icon: PiggyBank },
+];
 export default function EpargnePage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
@@ -44,6 +58,7 @@ export default function EpargnePage() {
     setIsModalOpen(false);
     setShowSuccess(true);
   };
+    const [selectedIconId, setSelectedIconId] = useState("briefcase");
 
 
   return (
@@ -80,6 +95,30 @@ export default function EpargnePage() {
         title="Créer un nouvel objectif"
       >
         <form onSubmit={handleCreateVault} className="space-y-6">
+             {/* SÉLECTEUR D'ICÔNE */}
+          <div className="space-y-3">
+            <label className="text-[10px] uppercase tracking-widest text-gray-500">Choisir une icône</label>
+            <div className="grid grid-cols-4 gap-3">
+              {AVAILABLE_ICONS.map((item) => {
+                const IconComp = item.icon;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setSelectedIconId(item.id)}
+                    className={cn(
+                      "p-4 rounded-2xl border transition-all flex items-center justify-center",
+                      selectedIconId === item.id 
+                        ? "bg-mansa-gold/10 border-mansa-gold text-mansa-gold shadow-lg shadow-mansa-gold/10" 
+                        : "bg-mansa-black border-white/5 text-gray-500 hover:border-white/20"
+                    )}
+                  >
+                    <IconComp size={20} />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
           <div className="space-y-2">
             <label className="text-[10px] uppercase tracking-widest text-gray-500">Nom du projet</label>
             <input type="text" placeholder="Ex: Voyage d'affaires Dubai" className="w-full bg-mansa-black border border-white/5 rounded-2xl py-4 px-6 outline-none focus:border-mansa-gold/30 transition-all" required />
